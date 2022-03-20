@@ -14,7 +14,7 @@ class Contenedor {
         this.nombre = nombre;
     }
     async write(texto) {
-        let agregar = fs.promises.writeFile(this.nombre, JSON.stringify(texto))
+        let agregar =await fs.promises.writeFile(this.nombre, JSON.stringify(texto))
         return agregar
     }
     async getAll() {
