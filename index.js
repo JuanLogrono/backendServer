@@ -18,6 +18,9 @@ let arrayProductos = []
 const verArray = products.getAll()
 verArray.then((R) => { arrayProductos = JSON.parse(R) })
 
+app.get('/', (req, res) => {
+    res.send("Desafío 3")
+})
 
 app.get('/productos', (req, res) => {
     res.send(arrayProductos)
