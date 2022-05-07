@@ -9,14 +9,14 @@ const PORT = 8080
 
 
 const server = app.listen(PORT, () => {
-    console.log(`puerto ${server.address().port}`)
+    console.log(`Escuchando en el puerto ${server.address().port}`)
 })
-server.on("error", error => console.log(error))
+server.on("error", error => console.error(error))
 
 
 let arrayProductos = []
 const verArray = products.getAll()
-verArray.then((R) => { arrayProductos = JSON.parse(R) })
+verArray.then((response) => { arrayProductos = JSON.parse(response) })
 
 app.get('/', (req, res) => {
     res.send("Desafío 3")
@@ -26,11 +26,8 @@ app.get('/productos', (req, res) => {
     res.send(arrayProductos)
 })
 app.get('/productoRandom', (req, res) => {
-    let arrayNum = []
-    arrayProductos.forEach(element => { arrayNum = [...arrayNum, element.id] });
-    let nroRandom = random.integer(0, arrayNum.length - 1)
-    const randomProd = products.getById(arrayNum[nroRandom])
-    randomProd.then((response) => res.send(response))
-    
+    let nroRandom = random.integer(0, arrayProductos.length - 1)
+    res.send(arrayProductos[nroRandom])
+
 });
 
